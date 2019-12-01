@@ -109,6 +109,8 @@ public struct Variable: Equatable, Resolvable {
           return object.value(forKey: bit)
         }
       #endif
+    } else if let value = context as? CustomStringConvertible, bit == "description" {
+        return value.description
     } else if let value = context {
       return Mirror(reflecting: value).getValue(for: bit)
     }
